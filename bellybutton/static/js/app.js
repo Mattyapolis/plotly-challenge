@@ -32,26 +32,35 @@ function buildCharts(sample) {
     console.log(response)
 
     // @TODO: Build a Bubble Chart using the sample data
-    var otu_ids = response.map(data => data.otu_ids);
-    var sample_values = response.map(data => data.sample_values)
-    var otu_labels = response.map(data => data.otu_labels)
+    // var otu_ids = response.map(data => data.otu_ids);
+    // var sample_values = response.map(data => data.sample_values)
+    // var otu_labels = response.map(data => data.otu_labels)
+
+    var otu_ids = response.otu_ids;
+    var sample_values = response.sample_values;
+    var otu_labels = response.otu_labels;
+
+    console.log(otu_ids);
+    console.log(sample_values);
+    console.log(otu_labels);
 
     var trace1 = [{
-      x: [otu_ids],
-      y: [sample_values],
+      x: otu_ids,
+      y: sample_values,
       mode: 'markers',
-      text: [otu_labels],
+      text: otu_labels,
       marker: {
-        size:[sample_values],
+        size:sample_values,
 
-        color: [otu_ids]
+        color: otu_ids
       }
     }];
 
     var layout = {
       showlegend: false,
+      autosize: false,
       height: 500,
-      width: 500,
+      width: 1200,
     };
 
     Plotly.newPlot("bubble", trace1, layout);
@@ -61,21 +70,22 @@ function buildCharts(sample) {
     // otu_ids, and labels (10 each).
 
     var trace2 = [{
-      values: [sample_values.slice(0,10)],
-      labels: [otu_ids.slice(0,10)],
-      text: [otu_labels.slice(0,10)]
+      values: sample_values.slice(0,10),
+      labels: otu_ids.slice(0,10),
+      hovertext: otu_labels.slice(0,10),
+      type: 'pie'
     }];
 
     var layout = {
       autosize: false, 
-      height: 500, 
-      width: 500, 
+      height: 600, 
+      width: 600, 
       margin : {
         l: 50,
         r: 50,
-        b: 100, 
+        b: 0, 
         t: 100,
-        pad: 4
+        pad: 0
       }
     };
 
