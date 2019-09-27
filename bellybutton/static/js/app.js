@@ -32,10 +32,7 @@ function buildCharts(sample) {
     console.log(response)
 
     // @TODO: Build a Bubble Chart using the sample data
-    // var otu_ids = response.map(data => data.otu_ids);
-    // var sample_values = response.map(data => data.sample_values)
-    // var otu_labels = response.map(data => data.otu_labels)
-
+ 
     var otu_ids = response.otu_ids;
     var sample_values = response.sample_values;
     var otu_labels = response.otu_labels;
